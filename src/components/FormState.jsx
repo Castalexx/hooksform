@@ -11,6 +11,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("")
   const [password, setPassword] = useState("");
@@ -31,6 +32,17 @@ const Form = () => {
     }
     setName(input);
   }
+
+  const lastNameHandler = (evento) => {
+    const input = evento.target.value;
+    if(input.length <= 2 && input.length > 0) {
+      setLastNameError("Your name must be longer than 2 characters")
+      } else {
+      setLastNameError("")
+      }
+    setLastName(input);
+    }
+  
   
   const emailHandler = (evento) => {
     const input = evento.target.value;
@@ -72,7 +84,8 @@ const Form = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="lastName" className="form-label">Last Name</label>
-          <input onChange={(evento) => setLastName(evento.target.value)} type="text" className="form-control" id="lastName" />
+          <input onChange={lastNameHandler} type="text" className="form-control" id="lastName" />
+          <p className='text-danger'>{lastNameError}</p>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
